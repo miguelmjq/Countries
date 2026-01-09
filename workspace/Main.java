@@ -34,7 +34,6 @@ public class Main {
     // requires the full file path as shown here unlike what you saw in runestone
     // where the file name was sufficient.
     File file = new File("/workspaces/Countries/workspace/countries-data.csv");
-
     // create a scanner and a loop to read from the file until you've read
     // everything.
     // inside the loop you'll need to read in a line from the file and use "split"
@@ -44,7 +43,24 @@ public class Main {
     // inside the loop, set countryArray[i] to the created Country object
     // after running this method your array should contain all 10 countries from
     // inside the countries-data file.
-
+    try{
+      Scanner scan = new Scanner(file); 
+      int i = 0;
+      while (scan.hasNext()&&i<10){
+        String[] lines = (scan.nextLine()).split(",");
+        // for(String b:lines)
+        // System.out.println(b);
+        Country country = new Country(lines[0],lines[1],lines[2],lines[3]);
+        countryArray[i]=country;
+        i++;
+      
+      }
+      scan.close();
+  }
+  catch(IOException e){
+    System.out.println(e);
+  }
+    
   }
 
   /*
@@ -55,10 +71,10 @@ public class Main {
    */
   public void showCountry() {
     // Get the country at index from countryArray
-
+    Country c = countryArray[index];
     // Use its get method to get the its image file name and save it into imagefile
     // variable below instead of worldmap.jpg.
-    String imagefile = "worldmap.jpg";
+    String imagefile = c.getFile();
     // Use the following code to create an new Image Icon and put it into the GUI
     img = new ImageIcon("/workspaces/Countries/workspace/" + imagefile);
     imageLabel.setIcon(img);
@@ -70,15 +86,23 @@ public class Main {
    * showCountry();
    */
   public void nextButtonClick() {
-
+    if(index>9){
+      index = 0;
+    }
+    else {
+      index++;
+    }
+    outputLabel.setText("");
+    showCountry();
   }
 
   /*
    * reviewButton should get the country at index from the countryArray, call its
    * toString() method and save the result, print it out with System.out.println
-   * and as an argument to outputLabel.setText( text to print out );
+   * and as an argument to outputLabel.setText( text to pri out );
    */
   public void reviewButtonClick() {
+    
 
   }
 
