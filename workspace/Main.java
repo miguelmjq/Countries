@@ -16,6 +16,7 @@ public class Main {
   private ImageIcon img;
   private JLabel imageLabel;
   private JLabel outputLabel;
+  private JTextArea userInput;
 
   public static void main(String[] args) {
     // Create the GUI
@@ -78,6 +79,7 @@ public class Main {
     // Use the following code to create an new Image Icon and put it into the GUI
     img = new ImageIcon("/workspaces/Countries/workspace/" + imagefile);
     imageLabel.setIcon(img);
+    outputLabel.setText("What is this country's main language?");
   }
 
   /*
@@ -102,8 +104,10 @@ public class Main {
    * and as an argument to outputLabel.setText( text to pri out );
    */
   public void reviewButtonClick() {
-    
-
+    Country c = countryArray[index];
+    String result = c.toString();
+    System.out.println(result);
+    outputLabel.setText(result);
   }
 
   /*
@@ -115,8 +119,16 @@ public class Main {
    */
   public void quizButtonClick() {
     Scanner scan = new Scanner(System.in);
-
-
+    outputLabel.setText("");
+    Country c = countryArray[index];
+    
+    String answer = userInput.getText();
+    if (answer.equalsIgnoreCase(c.getLanguage())){
+      outputLabel.setText("Correct!");
+    }
+    else {
+      outputLabel.setText("Wrong!");
+    }
     scan.close();
   }
 
@@ -129,6 +141,7 @@ public class Main {
     jFrame.setLayout(new FlowLayout());
     jFrame.setSize(500, 360);
     jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    userInput = new JTextArea(1,20);
     // buttons at the top
     JButton reviewButton = new JButton("Review");
     JButton quizButton = new JButton("Quiz");
@@ -144,6 +157,7 @@ public class Main {
     // and one for output
     outputLabel = new JLabel();
     jFrame.add(imageLabel);
+    jFrame.add(userInput);
     jFrame.add(outputLabel);
     jFrame.setVisible(true);
     // add event listener for button click
