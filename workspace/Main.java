@@ -1,3 +1,8 @@
+//  Class author:  Miguel Mirabal Q
+//  Date created: 1/13/26
+//  General description: A class that contains all the code for running the game. 
+
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

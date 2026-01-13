@@ -1,4 +1,6 @@
-
+//  Class author:  Miguel Mirabal Q
+//  Date created: 1/13/26
+//  General description: A class that creates a country object. has methods for getting the instance variables
 
 public class Country {
   // add private instance variables for the name, capital, language, and image
